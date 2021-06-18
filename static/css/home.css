@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
+
+.navbar-brand{
+    font-family: 'Reggae One', cursive;
+}
+
+.navbar-brand:hover{
+    color: rgba(187, 16, 16, 0.623);
+    transition: .8s;
+}
+.juvail{
+    color: red;
+}
