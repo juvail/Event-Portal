@@ -21,8 +21,8 @@ def accounts(request , *args , **kwargs):
                 messages.info(request,"already have an account")
             else:
                 User.objects.create(username=username,first_name=first_name,last_name=last_name,email=email,password=password)
-                User.save()
-                redirect("/account/login")
+                User.save
+                return redirect("/account/login")
     return render(request , 'auth.html' , {"form":form,"already":"already have account"})
 
 
@@ -36,6 +36,7 @@ def login_view(request , *args,**kwargs):
         print(user)
         if user!=None:
             login(request,user)
+            return redirect("/user-profile")
         else:
             messages.info(request,"Invalid user please register first")
             return redirect("/account")

@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+{% block content %}
+{% for event in events %}
+{{event.event_image.url}}
+{{event.name}}
+{{event.date}}
+{{event.start_time}}
+{{event.end_time}}
+{{event.venue}}
+{{event.description}}
+{% endfor %}
+<form action="/register-event">
+<button class="btn btn-success" >Create Event</button>
+</form>
+{% endblock %}

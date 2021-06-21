@@ -1,0 +1,9 @@
+{% extends 'home.html' %}
+{% block content %}
+    <form action="/register-event/" method="POST">
+        {% csrf_token %}
+
+        {{form.as_p}}
+        <button>Create</button>
+    </form>
+{% endblock %}
