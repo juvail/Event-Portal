@@ -33,7 +33,6 @@ def login_view(request , *args,**kwargs):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         user = authenticate(request,username=username,password=password)
-        print(user)
         if user!=None:
             login(request,user)
             return redirect("/user-profile")

@@ -2,28 +2,30 @@ from django.shortcuts import redirect, render
 from .models import EventDetail
 from .forms import CreateEvent
 
-# Create your views here.
+
 def home(request,*args,**kwargs):
-    event_obj = EventDetail.objects.all()
+    event_obj = EventDetail.objects.filter(approve=True)
     return render(request,'home.html',{"events":event_obj})
 def profile(request,*args,**kwargs):
-    print("profile vannu")
-    events = EventDetail.objects.all()
+    events = EventDetail.objects.filter(approve=True)
     return render(request,'profile.html',{"events":events})
 
 def create_event(request,*args,**kwargs):
-    events = EventDetail.objects.all()
-    print("crate_evnet vannu")
-    form = CreateEvent(request.POST or None )
-    if request.method =="POST":
-        name = request.POST["name"]
-        event_image = request.POST["event_image"]
-        date = request.POST["date"]
-        start_time = request.POST["start_time"]
-        end_time = request.POST["end_time"]
-        venue = request.POST["venue"]
-        description = request.POST["description"]
-        event = EventDetail.objects.create(name=name,event_image=event_image,date=date,start_time=start_time,end_time=end_time,venue=venue,description=description)
-        event.save()
-        return render(request,'profile.html',{"events":events})
+    form = CreateEvent()
+    events = EventDetail.objects.filter(approve=True)
+    if request.method == 'POST':
+        form = CreateEvent(request.POST or None,request.FILES or None)
+        if form.is_valid():
+            name = request.POST["name"]
+            event_image = request.FILES["event_image"]
+            date = request.POST["date"]
+            start_time = request.POST["start_time"]
+            end_time = request.POST["end_time"]
+            venue = request.POST["venue"]
+            description = request.POST["description"]
+            print(222)
+            event = EventDetail.objects.create(name=name,event_image=event_image,date=date,
+            start_time=start_time,end_time=end_time,venue=venue,description=description,approve=False)
+            event.save()
+            return redirect("/user-profile")
     return render(request,'create_event.html',{"form":form})

@@ -9,6 +9,7 @@ class EventDetail(models.Model):
     end_time = models.TimeField()
     venue = models.CharField(max_length=20)
     description = models.TextField(max_length=700 ,null=True,blank=True)
+    approve = models.BooleanField(default=False)
 
     def __str__(self) :
         return self.name
