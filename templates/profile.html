@@ -1,6 +1,26 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  
 {% extends 'home.html' %}
 {% block content %}
+{% for event in my_events %}
+<div class="card" style="width: 18rem;">
+    <img src="{{event.event.event_image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+    <h5 class="card-title">{{event.event.name}}</h5>
+      <p class="card-text">{{event.mobile}}</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{event.event.start_time}}</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ event.event.end_time }}</p>
+      </div>
+  </div>
+  {% endfor %}
 <form action="/register-event">
 <button class="btn btn-success" >Create Event</button>
 </form>
+<form action="/registration">
+<button class="btn btn-primary">Register</button></form>
 {% endblock %}

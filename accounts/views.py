@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from .forms import Accounts,Login
 from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib.auth.models import User
 
-User = get_user_model()
 
 def accounts(request , *args , **kwargs):
     form = Accounts(request.POST or None)
@@ -20,7 +20,7 @@ def accounts(request , *args , **kwargs):
             elif User.objects.filter(email=email).exists():
                 messages.info(request,"already have an account")
             else:
-                User.objects.create(username=username,first_name=first_name,last_name=last_name,email=email,password=password)
+                User.objects.create_user(username=username,first_name=first_name,last_name=last_name,email=email,password=password)
                 User.save
                 return redirect("/account/login")
     return render(request , 'auth.html' , {"form":form,"already":"already have account"})

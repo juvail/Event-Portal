@@ -1,3 +1,6 @@
+from django.db.models.enums import Choices
+from django.utils.regex_helper import Choice
+from events.models import EventDetail
 from django import forms
 
 class CreateEvent(forms.Form):
@@ -30,3 +33,7 @@ class CreateEvent(forms.Form):
     def clean_description(self):
         description = self.cleaned_data["description"]
         return description
+class Registration(forms.Form):
+    CHOICES=[(event,event) for event in EventDetail.objects.filter(approve=True)]
+    events = forms.ChoiceField(choices=CHOICES)
+    phone = forms.CharField()
