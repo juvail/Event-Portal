@@ -1,3 +1,4 @@
+import events
 from django.shortcuts import redirect, render
 from .models import EventDetail,EventRegister
 from .forms import CreateEvent , Registration
@@ -26,7 +27,6 @@ def create_event(request,*args,**kwargs):
             end_time = request.POST["end_time"]
             venue = request.POST["venue"]
             description = request.POST["description"]
-            print(222)
             event = EventDetail.objects.create(name=name,event_image=event_image,date=date,
             start_time=start_time,end_time=end_time,venue=venue,description=description,approve=False)
             event.save()
@@ -48,3 +48,9 @@ def registration(request,*args,**kwargs):
             evnt_register.save()
             return redirect("/user-profile")
     return render(request,'registration.html',{"form":form})
+
+
+def participants_list(request, pk,*args,**kwargs):
+    event = EventDetail.objects.get(id = pk)
+    name = EventRegister.objects.filter(event = event)
+    return render(request,'participants_list.html',{"list":name})

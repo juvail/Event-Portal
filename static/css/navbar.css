@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
+
+.navbar-brand{
+    font-family: 'Reggae One', cursive;
+    font-size: large;
+}
+
+ul li a{
+    font-size: large;
+}

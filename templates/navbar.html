@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -13,14 +14,19 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
-            <img src="{% static 'images/dyuksha_logo' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            <img src="{% static 'images/skull_logo.png' %}" alt="" width="30" height="24" id="logo" class="d-inline-block align-text-top font-weight-bold">
             Dyuksha</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if user.is_authenticated %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% else %}
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            {% endif %}
+
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
@@ -41,22 +47,25 @@
                   aria-expanded="false">
                   Speakers
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Juvail</a></li>
-                  <li><a class="dropdown-item" href="#">Adish</a></li>
-                  <li><a class="dropdown-item" href="#">Yanu</a></li>
-                  <li><a class="dropdown-item" href="#">Julu</a></li>
+                <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item text-white " href="#">Juvail</a></li>
+                  <li><a class="dropdown-item text-white " href="#">Adish</a></li>
+                  <li><a class="dropdown-item text-white " href="#">Yanu</a></li>
+                  <li><a class="dropdown-item text-white " href="#">Julu</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-                  <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                  <li><a class="dropdown-item text-white " href="#">Contact Us</a></li>
                 </ul>
               </li>
             </ul>
+            {% if user.is_authenticated %}
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            {% endif %}
+
           </div>
         </div>
       </nav>

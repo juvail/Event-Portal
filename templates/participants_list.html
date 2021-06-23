@@ -1,0 +1,7 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% for part in list %}
+{{ part.user }}<br>
+{% endfor %}
+<a href="/user-profile" class="btn btn-primary"> back</a>
+{% endblock %}

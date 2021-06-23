@@ -1,14 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
 
 
-.navbar-brand{
-    font-family: 'Reggae One', cursive;
+.container-fluid {
+    position: relative;
+    text-align: center;
+    color: white;
 }
 
-.navbar-brand:hover{
-    color: rgba(187, 16, 16, 0.623);
-    transition: .8s;
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-75%, -40%);
+    font-family: 'Reggae One', cursive;
+    /* padding: 1rem; */
+
+  }
+  .display-1{
+      color: #A9A9A9;
+  }
+  .display-1:hover{
+      color: #808080;
+      transition: 3s;
+  }
+
+.second{
+    height: 10rem;
+    background-color: #353839;
+    padding:3rem;
 }
-.juvail{
-    color: red;
+ul li{
+    
+    list-style-type: none;
+    
+}
+ul li a{
+    color: white;
+    text-decoration: none;
 }
